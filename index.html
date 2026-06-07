@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPM HAQs Mastery Portal</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+  
+  <!-- Main Grid Layout -->
+  <div class="app-container">
+    
+    <!-- Sidebar (Chapters & Progress) -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-area">
+          <div class="logo-icon">
+            <i data-lucide="shield-check"></i>
+          </div>
+          <div>
+            <h1>SPM HAQs</h1>
+            <p>Mastery Portal 2024</p>
+          </div>
+        </div>
+        <button class="toggle-sidebar-btn" id="toggleSidebar" aria-label="Toggle Sidebar">
+          <i data-lucide="chevron-left"></i>
+        </button>
+      </div>
+
+      <!-- User Progress Overview -->
+      <div class="progress-widget">
+        <div class="widget-header">
+          <h3>Your Study Progress</h3>
+          <span id="progress-percent">0%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-num" id="stat-read">0</span>
+            <span class="stat-label">Read</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num" id="stat-revised">0</span>
+            <span class="stat-label">Revised</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num text-danger" id="stat-struggle">0</span>
+            <span class="stat-label">Struggling</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Menu (Chapters list) -->
+      <nav class="chapter-nav">
+        <h3>Chapters</h3>
+        <ul id="chapters-list">
+          <!-- Chapters injected dynamically via JS -->
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Top Premium Bar -->
+      <header class="top-bar">
+        <div class="search-container">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" id="search-input" placeholder="Search 347 questions by keyword, topic, or chapter...">
+        </div>
+        
+        <div class="controls-group">
+          <!-- Toggle Active Recall -->
+          <button class="control-btn toggle-btn" id="active-recall-toggle" title="Active Recall: Hides answers by default to test your memory">
+            <i data-lucide="eye-off"></i>
+            <span>Active Recall</span>
+          </button>
+          
+          <!-- Light/Dark Mode Toggle -->
+          <button class="control-btn" id="theme-toggle" title="Toggle Light/Dark Theme">
+            <i data-lucide="sun"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Filtering Dashboard -->
+      <section class="filter-dashboard">
+        <div class="filter-row">
+          <div class="filter-group">
+            <span class="filter-label">Filter Type:</span>
+            <div class="btn-group">
+              <button class="filter-btn active" data-type="all">All</button>
+              <button class="filter-btn" data-type="LAQ">LAQs <span class="badge badge-laq">47</span></button>
+              <button class="filter-btn" data-type="SAQ">SAQs <span class="badge badge-saq">154</span></button>
+              <button class="filter-btn" data-type="VSAQ">VSAQs <span class="badge badge-vsaq">124</span></button>
+              <button class="filter-btn" data-type="SAQ/VSAQ">Combined <span class="badge badge-combined">22</span></button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-label">High-Yield Only:</span>
+            <button class="toggle-btn" id="high-yield-filter">
+              <i data-lucide="star"></i>
+              <span>High Yield (4+ Stars)</span>
+            </button>
+          </div>
+          
+          <div class="filter-group">
+            <span class="filter-label">Status:</span>
+            <select id="status-filter" class="custom-select">
+              <option value="all">All Statuses</option>
+              <option value="unread">Not Started</option>
+              <option value="read">Read</option>
+              <option value="revised">Revised</option>
+              <option value="struggling">Struggling</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="active-filters-bar" id="active-filters-summary">
+          <!-- Active filter pills dynamically added here -->
+        </div>
+      </section>
+
+      <!-- Questions List Area -->
+      <section class="questions-section">
+        <div class="section-header">
+          <h2 id="current-category-title">All SPM Questions</h2>
+          <span class="results-count" id="results-counter">Showing 347 of 347 questions</span>
+        </div>
+
+        <!-- Questions Grid -->
+        <div class="questions-grid" id="questions-grid">
+          <!-- Cards injected dynamically via JS -->
+        </div>
+        
+        <!-- Empty State -->
+        <div class="empty-state hidden" id="empty-state">
+          <i data-lucide="folder-open"></i>
+          <h3>No matching questions found</h3>
+          <p>Try refining your search query or adjusting your filters.</p>
+          <button class="reset-btn" id="reset-all-filters">Reset All Filters</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="questions_db.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
